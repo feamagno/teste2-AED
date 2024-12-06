@@ -2,6 +2,8 @@ package sortingAlgorithms;
 
 import dataStructures.*;
 
+import java.util.LinkedList;
+
 public class SortingAlgorithms<E extends Comparable<E>> {
 
     public static String SEPARATOR = "-------------------";
@@ -58,16 +60,6 @@ public class SortingAlgorithms<E extends Comparable<E>> {
         finalResult(array);
     }
 
-//    @SuppressWarnings("unchecked")
-//    public void heapSort(){
-//        Entry<E,E>[] unsorted =  entryArray(unsortedArray);
-//        MaxHeap<E,E> heap = new MaxHeap<>(unsorted);
-//        heap.printArray();
-//        finalEntryResult(heap.heapSort());
-//        heap.printArray();
-//    }
-
-
     public void heapSort(){
         E[] unsorted = copyArray();
         int lastPos = unsorted.length;
@@ -108,14 +100,96 @@ public class SortingAlgorithms<E extends Comparable<E>> {
         vec[hole] = rootElement;
     }
 
+    @SuppressWarnings("unchecked")
+    public void bucketSort(int biggestKey, int[] array){
+        LinkedList<Integer>[] linkedLists = new LinkedList[biggestKey+1];
+        int[] newArray = new int[biggestKey+1];
+
+        for (int i : array) {
+            LinkedList<Integer> linkedList = linkedLists[i];
+            if (linkedList == null)
+                linkedLists[i] = new LinkedList<>();
+            linkedLists[i].addLast(i);
+        }
+
+        for (int i = 0; i < linkedLists.length; i ++){
+            LinkedList<Integer> linkedList = linkedLists[i];
+            if (linkedList != null)
+                for (Integer j: linkedList)
+                    newArray[j] = j;
+        }
+
+        finalResult(newArray);
+    }
+
+//    @SuppressWarnings("unchecked")
+
+//        idfk they put it wrong on the slides
+
+//    public void mergeSort(){
+//        E[] array = copyArray();
+//        E[] auxVec = (E[]) new Comparable[array.length];
+//        mergeSortR(array, auxVec, 0, array.length - 1);
+//        postArray(array);
+//    }
+//
+//    protected void mergeSortR(E[] vec, E[] auxVec, int firstPos, int lastPos){
+//        if (firstPos < lastPos){
+//            int centre = (firstPos + lastPos) / 2;
+//            mergeSortR(vec, auxVec, firstPos, centre);
+//            mergeSortR(vec, auxVec, centre+1, lastPos);
+//            System.out.println("antes:");
+//            postArray(vec);
+//            mergeR(vec, auxVec, firstPos, centre, lastPos);
+//            System.out.println("depois:");
+//            postArray(vec);
+//        }
+//    }
+//
+//    protected void mergeR(E[] vec, E[] auxVec, int firstLeft, int lastLeft, int lastRight){
+//        int left = firstLeft;
+//        int right = lastLeft + 1;
+//        int result = firstLeft;
+//        while (left <= lastLeft && right <= lastRight)
+//            if (vec[left].compareTo(vec[right]) <= 0) {
+//                auxVec[result] = vec[left];
+//                result++;
+//                left++;
+//            }
+//            else {
+//                auxVec[result] = vec[right];
+//                result++;
+//                right++;
+//            }
+//        while (left <= lastLeft) {
+//            auxVec[result] = auxVec[left];
+//            result++;
+//            left++;
+//        }
+//
+//        System.arraycopy(auxVec, firstLeft, vec, firstLeft, result - firstLeft);
+//    }
 
     protected void postArray(E[] array){
         for (E e : array) System.out.print(e+" ");
         System.out.println();
     }
 
-
     protected void finalResult(E[] array){
+        System.out.println("Final:");
+        postArray(array);
+        System.out.println();
+    }
+
+
+    protected void postArray(int[] array){
+        for (int i : array)
+            if (i != 0)
+                System.out.print(i+" ");
+        System.out.println();
+    }
+
+    protected void finalResult(int[] array){
         System.out.println("Final:");
         postArray(array);
         System.out.println();

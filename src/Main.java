@@ -11,6 +11,8 @@ public class Main {
     public static String INSERTSORT = "insertSort:";
     public static String SELECTIONSORT = "selectionSort:";
     public static String HEAPSORT = "heapSort:";
+    public static String BUCKETSORT = "bucketSort:";
+    public static String MERGESORT = "mergeSort:";
 
     public static void main(String[] args){
 //        testPqueue();
@@ -18,8 +20,8 @@ public class Main {
     }
 
     private static void testSorting(){
-        Integer[] ints = {99, 32, 71, 45, 50, 100 ,99 , 0, 250};
-        Integer[] result;
+        Integer[] ints = {99, 32, 71, 45, 50};
+        int[] intes = {99, 32, 71, 45, 50};
         SortingAlgorithms<Integer> sortingAlgorithms = new SortingAlgorithms<>(ints);
 
         printMsg(INSERTSORT);
@@ -31,10 +33,12 @@ public class Main {
         printMsg(SELECTIONSORT);
         sortingAlgorithms.selectionSort();
 
-
         // se a arvore estiver toda estranha, mude o PRINTSPACE (de SortingAlgorithms) para um valor maior
         printMsg(HEAPSORT);
         sortingAlgorithms.heapSort();
+
+        printMsg(BUCKETSORT);
+        sortingAlgorithms.bucketSort(99, intes);
     }
 
     private static void printMsg(String MSG){
