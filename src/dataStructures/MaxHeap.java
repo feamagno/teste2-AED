@@ -2,7 +2,7 @@ package dataStructures;
 
 import dataStructures.exceptions.EmptyPriorityQueueException;
 
-public class MinHeap<K extends Comparable<K>, V> implements MinPriorityQueue<K,V>{
+public class MaxHeap<K extends Comparable<K>,V> implements MaxPriorityQueue<K,V> {
 
     // Default capacity of the priority queue.
     public static final int DEFAULT_CAPACITY = 100;
@@ -17,16 +17,16 @@ public class MinHeap<K extends Comparable<K>, V> implements MinPriorityQueue<K,V
     protected int currentSize;
 
     @SuppressWarnings("unchecked")
-    public MinHeap(int capacity){
+    public MaxHeap(int capacity){
         array = (Entry<K,V>[]) new Entry[capacity];
         currentSize = 0;
     }
 
-    public MinHeap(){
+    public MaxHeap(){
         this(DEFAULT_CAPACITY);
     }
 
-    public MinHeap(Entry<K,V>[] array){
+    public MaxHeap(Entry<K,V>[] array){
         buildArray(array.length, array);
         currentSize = array.length;
         buildPriorityTree();
@@ -53,7 +53,7 @@ public class MinHeap<K extends Comparable<K>, V> implements MinPriorityQueue<K,V
     }
 
     @Override
-    public Entry<K, V> minEntry() throws EmptyPriorityQueueException {
+    public Entry<K, V> maxEntry() throws EmptyPriorityQueueException {
         if (isEmpty()) throw new EmptyPriorityQueueException();
         return array[0];
     }
@@ -69,21 +69,22 @@ public class MinHeap<K extends Comparable<K>, V> implements MinPriorityQueue<K,V
     }
 
     @Override
-    public Entry<K, V> removeMin() throws EmptyPriorityQueueException {
+    public Entry<K, V> removeMax() throws EmptyPriorityQueueException {
         if (isEmpty()) throw new EmptyPriorityQueueException();
 
-        Entry<K,V> minEntry = array[0];
+        Entry<K,V> maxEntry = array[0];
         currentSize--;
         array[0] = array[currentSize];
         array[currentSize] = null;
         if (currentSize > 1)
             percolateDown(0);
 
-        return minEntry;
+        return maxEntry;
     }
+
     protected int percolateUp(int hole, K key){
         int parent = (hole - 1) / 2;
-        while (hole > 0 && key.compareTo(array[parent].getKey()) < 0){
+        while (hole > 0 && key.compareTo(array[parent].getKey()) > 0){
             array[hole] = array[parent];
             hole = parent;
             parent = (hole - 1) / 2;
@@ -99,9 +100,9 @@ public class MinHeap<K extends Comparable<K>, V> implements MinPriorityQueue<K,V
         boolean rootIsSmaller = true;
         while (child < currentSize && rootIsSmaller) {
             if (child < currentSize - 1 &&
-                    array[child+1].getKey().compareTo(array[child].getKey()) < 0)
+                    array[child+1].getKey().compareTo(array[child].getKey()) > 0)
                 child++;
-            rootIsSmaller = array[child].getKey().compareTo(rootKey) < 0;
+            rootIsSmaller = array[child].getKey().compareTo(rootKey) > 0;
             if (rootIsSmaller) {
                 array[hole] = array[child];
                 hole = child;
@@ -118,10 +119,19 @@ public class MinHeap<K extends Comparable<K>, V> implements MinPriorityQueue<K,V
         array = newArray;
     }
 
+    public Entry<K,V>[] heapSort() {
+        while (--currentSize > 0) {
+            Entry<K,V> rootEntry = array[0];
+            array[0] = array[currentSize];
+            array[currentSize] = rootEntry;
+            if (currentSize > 1)
+                percolateDown(0);
+        }
+        currentSize = array.length;
+        return array;
+    }
 
-
-
-    /*unrelated shit*/
+    /* unrelated shit */
 
     public static int PRINTSPACE = 16;
 
@@ -130,23 +140,17 @@ public class MinHeap<K extends Comparable<K>, V> implements MinPriorityQueue<K,V
         for (int i = 0; i < getHeight(); i++) {
             int expo = 0;
             while (expo++ < exponencial(2, i) && j < currentSize) {
+                printSpaces1(i);
+                System.out.print(array[j++].getKey());
                 printSpaces(i);
-                System.out.print(array[j].getKey());
-                if (array[j].getKey() instanceof Integer)
-                    printSpaces1(i, (Integer) array[j++].getKey());
             }
             System.out.println();
         }
     }
 
 
-    private void printSpaces1(int i, Integer j){
-        int count = 1;
-        while (j/10 > 0) {
-            j = j/10;
-            count++;
-        }
-        for (int k = 0; k < getSpaces(i)-count; k++)
+    private void printSpaces1(int i){
+        for (int k = 0; k < getSpaces(i)-1; k++)
             System.out.print(" ");
     }
 
