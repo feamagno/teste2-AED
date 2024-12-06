@@ -31,6 +31,8 @@ public class Main {
         printMsg(SELECTIONSORT);
         sortingAlgorithms.selectionSort();
 
+
+        // se a arvore estiver toda estranha, mude o PRINTSPACE (de SortingAlgorithms) para um valor maior
         printMsg(HEAPSORT);
         sortingAlgorithms.heapSort();
     }

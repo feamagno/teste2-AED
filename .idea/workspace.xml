@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42a2dd60-2eec-4016-a852-1486d9f2574f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/dataStructures/MaxHeap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataStructures/MaxPriorityQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sortingAlgorithms/SortingAlgorithms.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataStructures/MinHeap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataStructures/MinHeap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +57,7 @@
       <updated>1733444006171</updated>
       <workItem from="1733444008234" duration="1906000" />
       <workItem from="1733448541694" duration="3960000" />
-      <workItem from="1733482164714" duration="12476000" />
+      <workItem from="1733482164714" duration="13131000" />
     </task>
     <servers />
   </component>
