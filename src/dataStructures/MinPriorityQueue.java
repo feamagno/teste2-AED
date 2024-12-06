@@ -1,6 +1,9 @@
+package dataStructures;
+import dataStructures.exceptions.*;
+
 public interface MinPriorityQueue<K extends Comparable<K>, V> {
-// Returns true iff the priority queue contains no
-    entries.
+    // Returns true iff the priority queue contains no
+    //    entries.
     boolean isEmpty( );
     // Returns the number of entries in the priority queue.
     int size( );
@@ -16,5 +19,5 @@ public interface MinPriorityQueue<K extends Comparable<K>, V> {
     // queue and returns that entry.
     Entry<K,V> removeMin( ) throws
             EmptyPriorityQueueException;
-    // End of MinPriorityQueue.
+    // End of dataStructures.MinPriorityQueue.
 }
