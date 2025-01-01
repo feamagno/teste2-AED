@@ -2,6 +2,7 @@ import dataStructures.*;
 import sortingAlgorithms.SortingAlgorithms;
 
 import java.security.PublicKey;
+import java.util.SortedSet;
 
 public class Main {
 
@@ -13,6 +14,7 @@ public class Main {
     public static String HEAPSORT = "heapSort:";
     public static String BUCKETSORT = "bucketSort:";
     public static String MERGESORT = "mergeSort:";
+    public static String RADIXSORT = "radixSort:";
 
     public static void main(String[] args){
 //        testPqueue();
@@ -21,7 +23,7 @@ public class Main {
 
     private static void testSorting(){
         Integer[] ints = {99, 32, 71, 45, 50};
-        int[] intes = {99, 32, 71, 45, 50};
+        int[] intes = {14123, 32252, 71943, 45283, 50583};
         SortingAlgorithms<Integer> sortingAlgorithms = new SortingAlgorithms<>(ints);
 
         printMsg(INSERTSORT);
@@ -37,8 +39,11 @@ public class Main {
         printMsg(HEAPSORT);
         sortingAlgorithms.heapSort();
 
-        printMsg(BUCKETSORT);
-        sortingAlgorithms.bucketSort(99, intes);
+//        printMsg(BUCKETSORT);
+//        sortingAlgorithms.bucketSort(99, intes);
+
+//        printMsg(RADIXSORT);
+//        sortingAlgorithms.radixSort(5, intes);
     }
 
     private static void printMsg(String MSG){

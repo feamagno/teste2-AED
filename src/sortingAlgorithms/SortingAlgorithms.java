@@ -118,9 +118,37 @@ public class SortingAlgorithms<E extends Comparable<E>> {
                 for (Integer j: linkedList)
                     newArray[j] = j;
         }
-
         finalResult(newArray);
     }
+
+    private int MAX_INT = 10;
+
+//    @SuppressWarnings("unchecked")
+//    public void radixSort(int size, int[] array){
+//        LinkedList<Integer>[] vec = (LinkedList<Integer>[]) new LinkedList[MAX_INT];
+//        LinkedList<Integer>[] newArray;
+//        int mask = 0;
+//        for (int i = 0; i < size; i++) {
+//            newArray = (LinkedList<Integer>[]) new LinkedList[MAX_INT];
+//            for (int j = 0; j < array.length; j++) {
+//                // masking
+//                mask = array[j];
+//                for (int k = 0; k <= i; k++) // pega a parte que vem depois do "caracter" q a gnt quer
+//                    mask = mask/10;
+//
+//                mask = array[j] - 10*mask*(i+1);
+//                // tira a parte da frente que a gente não quer
+//
+//                for (int m = 0; m < i; m++)
+//                    mask = mask/10;
+//
+//                newArray[mask].addLast(array[j]);
+//            }
+//            vec = newArray;
+//            postArray(array);
+//        }
+//        finalResult(array);
+//    }
 
 //    @SuppressWarnings("unchecked")
 
@@ -171,11 +199,17 @@ public class SortingAlgorithms<E extends Comparable<E>> {
 //    }
 
     protected void postArray(E[] array){
+        try{
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            System.out.println("error");
+        }
         for (E e : array) System.out.print(e+" ");
         System.out.println();
     }
 
     protected void finalResult(E[] array){
+        postArray(array);
         System.out.println("Final:");
         postArray(array);
         System.out.println();
@@ -228,6 +262,11 @@ public class SortingAlgorithms<E extends Comparable<E>> {
     public static int PRINTSPACE = 16;
 
     public void printArray(int currentSize, E[] array) {
+        try{
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            System.out.println("error");
+        }
         int j = 0;
         for (int i = 0; i < getHeight(currentSize); i++) {
             int expo = 0;
